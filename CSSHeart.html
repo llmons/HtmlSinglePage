@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>heard</title>
+</head>
+<style>
+    :root {
+        --color-heart: red;
+        --length-heart: 100px;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: sans-serif;
+        background-color: #666666;
+        width: 100vw;
+        height: 1000px;
+        overflow: auto;
+    }
+
+    .heart {
+        width: 100vw;
+        height: 4000px;
+    }
+
+    .heart::after {
+        content: '';
+        width: 100vw;
+        height: 4000px;
+        background-color: blue;
+    }
+
+    .rectangle {
+        position: fixed;
+        width: var(--length-heart);
+        height: var(--length-heart);
+        top: calc(50vh - var(--length-heart) / 2);
+        left: calc(50vw - var(--length-heart) / 2);
+        background-color: var(--color-heart);
+        transform: rotate(-45deg);
+    }
+
+    .left-circle {
+        position: relative;
+        width: var(--length-heart);
+        height: var(--length-heart);
+        top: -50%;
+        background-color: var(--color-heart);
+        border-radius: 50%;
+    }
+
+    .right-circle {
+        position: relative;
+        width: var(--length-heart);
+        height: var(--length-heart);
+        top: -100%;
+        left: 50%;
+        background-color: var(--color-heart);
+        border-radius: 50%;
+    }
+
+</style>
+
+<body>
+<div class="heart">
+    <div class="rectangle">
+        <div class="left-circle"></div>
+        <div class="right-circle"></div>
+    </div>
+</div>
+</body>
+
+<script>
+    const root = document.documentElement;
+    let len = parseInt(getComputedStyle(root).getPropertyValue('--length-heart'));
+    window.onscroll = e => {
+        console.log(e);
+        // console.log(root.offsetTop);
+        // root.style.setProperty('--length-heart', newLen);
+    }
+</script>
+
+</html>
