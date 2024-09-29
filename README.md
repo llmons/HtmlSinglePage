@@ -1,0 +1,1 @@
+html single page
