@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>heard</title>
+    <title>CSS Heard</title>
 </head>
 <style>
     :root {
@@ -18,22 +18,37 @@
 
     body {
         font-family: sans-serif;
-        background-color: #666666;
+        background-color: #ffffff;
         width: 100vw;
-        height: 1000px;
-        overflow: auto;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .foreground {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        /*background-color: #666666;*/
+        z-index: 1;
+
+        /*mask-image: radial-gradient(circle at 50% 50%, transparent 50%, black 51%);*/
+        /*mask-repeat: no-repeat;*/
+        /*mask-position: center;*/
+        /*mask-size: calc(var(--length-heart) * 2) calc(var(--length-heart) * 2);*/
+    }
+
+    .background {
+        position: absolute;
+        /*background: url("https://picsum.photos/1000") no-repeat;*/
+        width: 100vw;
+        height: 100vh;
+        z-index: 0;
     }
 
     .heart {
         width: 100vw;
-        height: 4000px;
-    }
-
-    .heart::after {
-        content: '';
-        width: 100vw;
-        height: 4000px;
-        background-color: blue;
+        height: 100px;
+        z-index: 2;
     }
 
     .rectangle {
@@ -68,22 +83,31 @@
 </style>
 
 <body>
+<!-- <div class="foreground"></div> -->
+
 <div class="heart">
     <div class="rectangle">
         <div class="left-circle"></div>
         <div class="right-circle"></div>
     </div>
 </div>
+
+<div class="background"></div>
 </body>
 
 <script>
     const root = document.documentElement;
     let len = parseInt(getComputedStyle(root).getPropertyValue('--length-heart'));
-    window.onscroll = e => {
-        console.log(e);
-        // console.log(root.offsetTop);
-        // root.style.setProperty('--length-heart', newLen);
-    }
+    window.addEventListener('wheel', e => {
+        if (e.deltaY > 0) len += 5;
+        else len -= 5;
+
+        if (len > window.outerWidth && len > window.outerHeight)
+            len = Math.max(window.outerWidth, window.outerHeight);
+        if (len < 0) len = 0;
+
+        root.style.setProperty('--length-heart', `${len}px`);
+    });
 </script>
 
 </html>

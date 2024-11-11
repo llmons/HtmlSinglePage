@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Keyboard Check</title>
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet">
     <style>
         :root {
-            --color-body-background: #666;
-            --color-button: #aaa;
-            --length-key: 30px;
+            --key-length: 30px;
         }
 
         * {
@@ -18,8 +18,8 @@
 
         body {
             font-family: sans-serif;
-            background-color: #666;
-            color: var(--color-body-background);
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
         }
 
         .line {
@@ -31,15 +31,15 @@
         }
 
         .line-top button {
-            width: calc(var(--length-key) * 1.047);
-            height: calc(var(--length-key) / 1.5);
-            line-height: calc(var(--length-key) / 1.5);
+            width: calc(var(--key-length) * 1.047);
+            height: calc(var(--key-length) / 1.5);
+            line-height: calc(var(--key-length) / 1.5);
         }
 
         button {
-            width: var(--length-key);
-            height: var(--length-key);
-            background-color: var(--color-button);
+            width: var(--key-length);
+            height: var(--key-length);
+            background-color: var(--bs-info);
             margin: 1px;
             padding: 1px;
             text-align: center;
@@ -65,8 +65,8 @@
         }
 
         .arrow {
-            height: calc(var(--length-key) / 2);
-            line-height: calc(var(--length-key) / 2);
+            height: calc(var(--key-length) / 2);
+            line-height: calc(var(--key-length) / 2);
             margin: 0 1px;
         }
 
@@ -192,19 +192,23 @@
     </div>
 </div>
 
+<script crossorigin="anonymous"
+        integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
     window.onkeydown = e => {
         e.preventDefault();
         console.log(e.code);
         const key = document.getElementById(e.code);
         if (key === null) return;
-        key.style.backgroundColor = 'greenyellow';
+        key.style.backgroundColor = 'var(--bs-primary)';
     };
     window.onkeyup = e => {
         e.preventDefault();
         const key = document.getElementById(e.code);
         if (key === null) return;
-        key.style.backgroundColor = 'var(--color-button)';
+        key.style.backgroundColor = 'var(--bs-info)';
     }
 </script>
 
